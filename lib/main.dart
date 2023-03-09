@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './screens/products_overview_screen.dart';
+import './screens/product_details_screen.dart';
 import './providers/products.dart';
 
 void main() {
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.deepOrange,
             fontFamily: 'Lato'),
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        routes:{
+          ProductDetailsScreen.nameRoute:(ctx)=>const ProductDetailsScreen(),
+        } ,
       ),
     );
   }
