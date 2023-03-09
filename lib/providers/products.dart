@@ -39,6 +39,9 @@ class Products with ChangeNotifier {
   List<Product> get items {
     return [..._items];
   }
+  Product findById(id){
+    return _items.firstWhere((prod) => prod.id == id);
+  }
 void addProducts(){
   // _items.add(value);
  notifyListeners();
