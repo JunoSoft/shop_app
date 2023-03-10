@@ -9,7 +9,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    final product = Provider.of<Product>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GestureDetector(
@@ -24,14 +24,16 @@ class ProductItem extends StatelessWidget {
           ),
           footer: GridTileBar(
             backgroundColor: Colors.black87,
-            leading: IconButton(
-                onPressed: () {
-                  product.isFavouriteToggle();
-                },
-                color: Theme.of(context).accentColor,
-                icon: Icon(product.isFavourite
-                    ? Icons.favorite
-                    : Icons.favorite_border)),
+            leading: Consumer<Product>(
+              builder: (ctx, product, child) => IconButton(
+                  onPressed: () {
+                    product.isFavouriteToggle();
+                  },
+                  color: Theme.of(context).accentColor,
+                  icon: Icon(product.isFavourite
+                      ? Icons.favorite
+                      : Icons.favorite_border)),
+            ),
             trailing: IconButton(
                 onPressed: () {},
                 color: Theme.of(context).accentColor,
