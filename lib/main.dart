@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import './screens/products_overview_screen.dart';
 import './screens/product_details_screen.dart';
+import './screens/cart_screen.dart';
 import './providers/products.dart';
 import './providers/cart.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => Products()),
-        ChangeNotifierProvider(create: (ctx)=>Cart())
+        ChangeNotifierProvider(create: (ctx) => Cart())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
         routes: {
           ProductDetailsScreen.nameRoute: (ctx) => const ProductDetailsScreen(),
+          CartScreen.nameRoute: (ctx) => const CartScreen()
         },
       ),
     );
