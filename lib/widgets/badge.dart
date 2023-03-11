@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Badge extends StatelessWidget {
-  const Badge({
+class BadgeMine extends StatelessWidget {
+  const BadgeMine({
     super.key,
     required this.child,
     required this.value,
     required this.color,
   });
 
-  final Widget child;
+  final Widget? child;
   final String value;
   final Color color;
 
@@ -17,7 +17,7 @@ class Badge extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        child,
+        child!,
         Positioned(
           right: 8,
           top: 8,
