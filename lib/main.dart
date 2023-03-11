@@ -7,6 +7,7 @@ import './screens/cart_screen.dart';
 import './providers/products.dart';
 import './providers/cart.dart';
 import './providers/orders.dart';
+import './screens/orders_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,11 +31,13 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.purple,
             accentColor: Colors.deepOrange,
             fontFamily: 'Lato'),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        home: const MyHomePage(title: 'Shop App'),
         routes: {
           ProductDetailsScreen.nameRoute: (ctx) => const ProductDetailsScreen(),
-          CartScreen.nameRoute: (ctx) => const CartScreen()
+          CartScreen.nameRoute: (ctx) => const CartScreen(),
+        OrdersScreen.nameRoute:(ctx)=>const OrdersScreen()
         },
+      
       ),
     );
   }
@@ -56,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text('JunoShop App '),
       ),
       body: ProductsOverviewSCreen(),
     );
