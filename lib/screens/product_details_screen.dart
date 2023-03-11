@@ -16,8 +16,8 @@ class ProductDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(loadedProduct.title),
       ),
-      body: Center(
-        child: Container(
+      body: Column(children: <Widget>[
+        Container(
           height: 300,
           width: double.infinity,
           child: Image.network(
@@ -25,7 +25,25 @@ class ProductDetailsScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-      ),
+        const SizedBox(
+          height: 30,
+        ),
+        Text(
+          '\$ ${loadedProduct.price}',
+          style: TextStyle(color: Colors.grey, fontSize: 20),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              loadedProduct.description,
+              textAlign: TextAlign.center,
+              softWrap: true,
+            ))
+      ]),
     );
   }
 }
