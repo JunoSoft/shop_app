@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
 import '../widgets/products_grid.dart';
-import '../providers/products.dart';
+import '../providers/cart.dart';
 
 enum FilterOption { All, Favorites }
 
 class ProductsOverviewSCreen extends StatefulWidget {
-  ProductsOverviewSCreen({super.key});
+  const ProductsOverviewSCreen({super.key});
 
   @override
   State<ProductsOverviewSCreen> createState() => _ProductsOverviewSCreenState();
@@ -17,7 +18,6 @@ class _ProductsOverviewSCreenState extends State<ProductsOverviewSCreen> {
   bool _isFavourite = false;
   @override
   Widget build(BuildContext context) {
-    final productContainer = Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('JunoShop'),
@@ -42,7 +42,13 @@ class _ProductsOverviewSCreenState extends State<ProductsOverviewSCreen> {
                       value: FilterOption.Favorites,
                       child: Text('Favourite'),
                     )
-                  ])
+                  ]),
+          Consumer<Cart>(
+            builder: (_, cart, ch) => badges.Badge(
+              badgeContent: Text(cart.itemCount.toString()),
+              child: const Icon(Icons.shopping_cart),
+            ),
+          ),
         ],
       ),
       body: ProductsGrid(

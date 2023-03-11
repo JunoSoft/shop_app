@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../screens/product_details_screen.dart';
 import '../providers/product.dart';
+import '../providers/cart.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({super.key});
@@ -10,6 +11,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
+     final cart = Provider.of<Cart>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GestureDetector(
@@ -35,7 +37,9 @@ class ProductItem extends StatelessWidget {
                       : Icons.favorite_border)),
             ),
             trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  cart.addItem(product.id, product.price, product.title);
+                },
                 color: Theme.of(context).accentColor,
                 icon: const Icon(Icons.shopping_cart)),
             title: Text(
