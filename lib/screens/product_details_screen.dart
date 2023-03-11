@@ -17,7 +17,10 @@ class ProductDetailsScreen extends StatelessWidget {
         title: Text(loadedProduct.title),
       ),
       body: Center(
-        
+        child: Container(
+          height: 300,
+          child: Image.network(loadedProduct.imageUrl),
+        ),
       ),
     );
   }
