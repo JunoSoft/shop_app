@@ -21,14 +21,14 @@ class UsserProductsItem extends StatelessWidget {
         child: Row(
           children: <Widget>[
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(EditProductsScreen.nameRoute);
+              },
               icon: const Icon(Icons.edit),
               color: Theme.of(context).primaryColor,
             ),
             IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(EditProductsScreen.nameRoute);
-              },
+              onPressed: () {},
               icon: const Icon(Icons.delete),
               color: Theme.of(context).errorColor,
             ),
