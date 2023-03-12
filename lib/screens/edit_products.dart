@@ -9,10 +9,19 @@ class EditProductsScreen extends StatefulWidget {
 }
 
 class _EditProductsScreenState extends State<EditProductsScreen> {
-  final _priceFocusNode = FocusNode();
   
+  
+  final _priceFocusNode = FocusNode();
+  final _descriptionFocusNode = FocusNode();
+  @override
+  void dispose() {
+    _priceFocusNode.dispose();
+    _descriptionFocusNode.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Product'),
@@ -33,7 +42,14 @@ class _EditProductsScreenState extends State<EditProductsScreen> {
               decoration: const InputDecoration(label: Text('Price')),
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
-              focusNode: _priceFocusNode,
+              focusNode: _descriptionFocusNode,
+            ),
+             TextFormField(
+              decoration: const InputDecoration(label: Text('description')),
+              textInputAction: TextInputAction.next,
+              maxLines: 3,
+              keyboardType: TextInputType.multiline,
+             
             ),
           ],
         )),
