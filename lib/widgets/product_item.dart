@@ -45,8 +45,12 @@ class ProductItem extends StatelessWidget {
                         'Added to cart',
                         textAlign: TextAlign.center,
                       ),
-                      duration: Duration(seconds: 2),
-                      action: SnackBarAction(label: 'UNDO', onPressed: () {}),
+                      duration: const Duration(seconds: 2),
+                      action: SnackBarAction(
+                          label: 'UNDO',
+                          onPressed: () {
+                            cart.removeSingleItem(product.id);
+                          }),
                     ),
                   );
                 },
