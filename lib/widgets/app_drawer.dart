@@ -34,7 +34,7 @@ class AppDrawer extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.edit),
-            title: const Text('MAnage Products'),
+            title: const Text('Manage Products'),
             onTap: () {
               Navigator.of(context)
                   .restorablePushReplacementNamed(UserProductsScreen.nameRoute);
