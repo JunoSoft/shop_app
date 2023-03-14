@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
@@ -11,6 +12,6 @@ class testScreen extends StatefulWidget {
 class _testScreenState extends State<testScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(child: Text('hello everyone'),);
   }
 }
