@@ -11,7 +11,7 @@ class UserProductsScreen extends StatelessWidget {
   const UserProductsScreen({super.key});
 
   Future<void> _refreshProducts(BuildContext context) async{
-    Provider.of<Products>(context).fetchAndSetsProduct();
+    await Provider.of<Products>(context,listen: false).fetchAndSetsProduct();
   }
 
   @override
