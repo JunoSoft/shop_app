@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'product.dart';
 
 class Products with ChangeNotifier {
@@ -50,6 +53,16 @@ class Products with ChangeNotifier {
   }
 
   void addProducts(Product product) {
+    const url =
+        'https://shopapp-9168e-default-rtdb.firebaseio.com/products.json';
+    http.post(Uri.parse(url),
+        body: json.encode({
+          'description': product.description,
+          'imageUrl': product.imageUrl,
+          'price': product.price,
+          'title': product.title,
+          'isFavourite': product.isFavourite
+        }));
     final newProduct = Product(
         id: DateTime.now().toString(),
         description: product.description,
@@ -70,8 +83,9 @@ class Products with ChangeNotifier {
       print('...');
     }
   }
-  void deleteProduct(String id){
-    _items.removeWhere((prod) => prod.id ==id);
+
+  void deleteProduct(String id) {
+    _items.removeWhere((prod) => prod.id == id);
     notifyListeners();
   }
 }
