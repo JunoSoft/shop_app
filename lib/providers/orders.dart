@@ -22,18 +22,45 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
-  Future<void> addOrder(List<CartItem> cartProducts, double total)async {
+  Future<void> fetchAndSetsOrders() async {
+    const url = 'https://shopapp-9168e-default-rtdb.firebaseio.com/orders.json';
+    final response = await http.get(Uri.parse(url));
+    final List<OrderItem> loadedOrder = [];
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+    if(extractedData ==null){
+      return ;
+    }
+    extractedData.forEach((orderId, orderData) {
+      loadedOrder.add(OrderItem(
+          id: orderId,
+          amount: orderData['amount'],
+          dateTime: DateTime.parse(orderData['dateTime']),
+          products: (orderData['products'] as List<dynamic>)
+              .map((item) => CartItem(
+                  id: item['id'],
+                  price: item['price'],
+                  quantity: item['quantity'],
+                  title: item['title']))
+              .toList()));
+    });
+    _orders= loadedOrder;
+    notifyListeners();
+  }
+
+  Future<void> addOrder(List<CartItem> cartProducts, double total) async {
     const url = 'https://shopapp-9168e-default-rtdb.firebaseio.com/orders.json';
     final response = await http.post(Uri.parse(url),
         body: json.encode({
           'amount': total,
           'dateTime': DateTime.now().toIso8601String(),
-          'products': cartProducts.map((prod) => {
-                'id': prod.id,
-                'title': prod.title,
-                'quantity': prod.quantity,
-                'price': prod.price,
-              }).toList(),
+          'products': cartProducts
+              .map((prod) => {
+                    'id': prod.id,
+                    'title': prod.title,
+                    'quantity': prod.quantity,
+                    'price': prod.price,
+                  })
+              .toList(),
         }));
 
     _orders.insert(

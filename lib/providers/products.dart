@@ -61,6 +61,9 @@ class Products with ChangeNotifier {
       final response = await http.get(Uri.parse(url));
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Product> loadedProducts = [];
+      if (extractedData == null) {
+        return;
+      }
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product(
             id: prodId,
@@ -115,7 +118,7 @@ class Products with ChangeNotifier {
             'description': newProduct.description,
             'price': newProduct.price,
             'imageUrl': newProduct.imageUrl,
-            'isFavourite':newProduct.isFavourite
+            'isFavourite': newProduct.isFavourite
           }));
       _items[prodIndex] = newProduct;
       notifyListeners();
