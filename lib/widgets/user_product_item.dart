@@ -43,7 +43,10 @@ class UsserProductsItem extends StatelessWidget {
                 } catch (error) {
                   scafold.showSnackBar(
                     const SnackBar(
-                      content: Text('Item Deletion is failed!'),
+                      content: Text(
+                        'Item Deletion is failed!',
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   );
                 }

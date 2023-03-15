@@ -104,17 +104,17 @@ class Products with ChangeNotifier {
   }
 
   Future<void> updateProduct(String? id, Product newProduct) async {
-
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
-       final url ='https://shopapp-9168e-default-rtdb.firebaseio.com/products/$id.json';
-      await http.patch(Uri.parse(url),body:json.encode({
-        'title':newProduct.title,
-        'description':newProduct.description,
-        'price':newProduct.price,
-        'imageUrl':newProduct.imageUrl,
-
-      }) );
+      final url =
+          'https://shopapp-9168e-default-rtdb.firebaseio.com/products/$id.json';
+      await http.patch(Uri.parse(url),
+          body: json.encode({
+            'title': newProduct.title,
+            'description': newProduct.description,
+            'price': newProduct.price,
+            'imageUrl': newProduct.imageUrl,
+          }));
       _items[prodIndex] = newProduct;
       notifyListeners();
     } else {
@@ -122,19 +122,19 @@ class Products with ChangeNotifier {
     }
   }
 
-  Future<void> deleteProduct(String id)  async{
-    final url ='https://shopapp-9168e-default-rtdb.firebaseio.com/products/$id';
-    final existingIndex =  _items.indexWhere((prod) => prod.id == id);
-    Product? existingProduct =  _items[existingIndex];
+  Future<void> deleteProduct(String id) async {
+    final url =
+        'https://shopapp-9168e-default-rtdb.firebaseio.com/products/$id.json';
+    final existingIndex = _items.indexWhere((prod) => prod.id == id);
+    Product? existingProduct = _items[existingIndex];
     _items.removeAt(existingIndex);
     notifyListeners();
-   final response =  await http.delete(Uri.parse(url));
-   if(response.statusCode >=400){
-    _items.insert(existingIndex, existingProduct);
-    notifyListeners();
-    throw HttpException(message: 'Could not delete product ');
-   }
-   existingProduct =null;
-  
+    final response = await http.delete(Uri.parse(url));
+    if (response.statusCode >= 400) {
+      _items.insert(existingIndex, existingProduct);
+      notifyListeners();
+      throw HttpException(message: 'Could not delete product ');
+    }
+    existingProduct = null;
   }
 }
