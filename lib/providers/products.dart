@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'product.dart';
 import '../models/http_exception.dart';
+import '../models/http_exception.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
@@ -114,6 +115,7 @@ class Products with ChangeNotifier {
             'description': newProduct.description,
             'price': newProduct.price,
             'imageUrl': newProduct.imageUrl,
+            'isFavourite':newProduct.isFavourite
           }));
       _items[prodIndex] = newProduct;
       notifyListeners();
