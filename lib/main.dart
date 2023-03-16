@@ -10,6 +10,7 @@ import './providers/orders.dart';
 import './screens/orders_screen.dart';
 import './screens/user_products_screen.dart';
 import './screens/edit_products.dart';
+import './screens/auth_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,8 +25,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => Products()),
-        ChangeNotifierProvider(create: (ctx) => Cart(),),
-         ChangeNotifierProvider(create: (ctx) => Orders(),)
+        ChangeNotifierProvider(
+          create: (ctx) => Cart(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Orders(),
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -37,11 +42,10 @@ class MyApp extends StatelessWidget {
         routes: {
           ProductDetailsScreen.nameRoute: (ctx) => const ProductDetailsScreen(),
           CartScreen.nameRoute: (ctx) => const CartScreen(),
-        OrdersScreen.nameRoute:(ctx)=>const OrdersScreen(),
-        UserProductsScreen.nameRoute:(ctx)=>const UserProductsScreen(),
-        EditProductsScreen.nameRoute:(ctx)=>const EditProductsScreen()
+          OrdersScreen.nameRoute: (ctx) => const OrdersScreen(),
+          UserProductsScreen.nameRoute: (ctx) => const UserProductsScreen(),
+          EditProductsScreen.nameRoute: (ctx) => const EditProductsScreen()
         },
-      
       ),
     );
   }
@@ -63,9 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title:const Text('JunoShop App '),
+        title: const Text('JunoShop App '),
       ),
-      body: const ProductsOverviewSCreen(),
+      body: AuthScreen(),
     );
   }
 }

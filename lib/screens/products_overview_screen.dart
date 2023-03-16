@@ -42,7 +42,9 @@ class _ProductsOverviewSCreenState extends State<ProductsOverviewSCreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shop'),
+        title: const Center(
+          child: Text('Shop'),
+        ),
         actions: <Widget>[
           PopupMenuButton(
               onSelected: (FilterOption selectedValue) {
