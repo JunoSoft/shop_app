@@ -8,25 +8,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/http_exception.dart';
 
 class Auth with ChangeNotifier {
-  String _token;
-  DateTime _expiryDate;
-  String _userId;
-  Timer _authTimer;
+   String? _token;
+   DateTime? _expiryDate;
+   String? _userId;
+   Timer? _authTimer;
 
   bool get isAuth {
     return token != null;
   }
 
-  String get token {
+  String? get token {
     if (_expiryDate != null &&
-        _expiryDate.isAfter(DateTime.now()) &&
+        _expiryDate!.isAfter(DateTime.now()) &&
         _token != null) {
       return _token;
     }
     return null;
   }
 
-  String get userId {
+  String? get userId {
     return _userId;
   }
 
@@ -47,7 +47,7 @@ class Auth with ChangeNotifier {
       );
       final responseData = json.decode(response.body);
       if (responseData['error'] != null) {
-        throw HttpException(responseData['error']['message']);
+        throw HttpException(responseData['error']['message'], message: '');
       }
       _token = responseData['idToken'];
       _userId = responseData['localId'];
